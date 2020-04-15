@@ -1,0 +1,10 @@
+	Condition
+'groseqe10.minus.merged.bg.bw'	untreated
+'groseqe10.plus.merged.bg.bw'	treated
+'groseqe40.minus.merged.bg.bw'	untreated
+'groseqe40.plus.merged.bg.bw'	treated
+'groseqe160.minus.merged.bg.bw'	untreated
+'groseqe160.plus.merged.bg.bw'	treated
+'groseqVeh.minus.merged.bg.bw'	untreated
+'groseqVeh.plus.merged.bg.bw'	treated
+'GSM1402790_cit0min_merged.norm.bigWig'	untreated
