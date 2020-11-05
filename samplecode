@@ -1,0 +1,20 @@
+# need to copy files in and out of BioHPC node during reservations because information is periodically deleted
+mkdir /workdir/bn243
+cp /home/bn243*fastq.gz /workdir/
+cp /workdir/*BAM /home/bn243
+
+# reading in some initial data
+multiBigwigSummary BED-file -b groseqe10.minus.merged.bg.bw groseqe10.plus.merged.bg.bw groseqe40.minus.merged.bg.bw groseqe40.plus.merged.bg.bw groseqe160.minus.merged.bg.bw groseqe160.plus.merged.bg.bw groseqVeh.minus.merged.bg.bw groseqVeh.plus.merged.bg.bw -o results2.npz --BED referenceBED.dms --outRawCounts result_count2.txt &
+
+# bowtie 
+nohup bowtie hg19 -1 SRR1323033_1.fastq -2 SRR1323033_2.fastq -v 1 -m 1  --al alignSRR1323033.fq --un unalign SRR1323033.fq --sam &
+bowtie -v 2 -m 1 hg19.1.ebwt hg19.2.ebwt hg19.3.ebwt hg19.4.ebwt -1 SRR1323033_1.fastq -2 SRR1323033_2.fastq
+bowtie hg19 -1 SRR1323033_1.fastq -2 SRR1323033_2.fastq -v 1 -m 1
+bowtie hg19 -1 $SRA_1.fastq -2 $SRA_2.fastq -v 1 -m 1 
+
+# fetching data from ncbi for human reference genome 
+prefetch + sra number downloads file into ncbi/public/sra
+hg19 downloading from bowtie website
+fastqdump --split-files (delete .sra)
+nohup bash makefastQ.sh &
+
